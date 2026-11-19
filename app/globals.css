@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white text-ink font-sans antialiased; font-size: 17px; line-height: 1.6; }
+  h1, h2, h3 { text-wrap: balance; }
+  :focus-visible { outline: 3px solid #C9A45C; outline-offset: 3px; border-radius: 2px; }
+  ::selection { background: #C9A45C; color: #0B1730; }
+}
+
+@layer components {
+  .container-site { @apply mx-auto w-full max-w-site px-5 sm:px-8; }
+  .eyebrow { @apply text-[0.95rem] font-semibold text-gold-dark; }
+  .on-dark .eyebrow { @apply text-gold-light; }
+  .h-display { @apply font-display font-normal tracking-[-0.015em] leading-[1.1]; }
+  .btn { @apply inline-flex min-h-[50px] items-center justify-center gap-2 rounded-md px-6 text-[1rem] font-semibold transition-colors duration-200; }
+  .btn-gold { @apply btn bg-gold text-navy hover:bg-gold-light; }
+  .btn-navy { @apply btn bg-navy text-white hover:bg-navy-700; }
+  .btn-ghost-light { @apply btn border-2 border-white/40 text-white hover:border-white hover:bg-white/5; }
+  .btn-ghost-dark { @apply btn border-2 border-navy/20 text-navy hover:border-navy; }
+  .card { @apply rounded-lg border border-line bg-white p-7 shadow-card; }
+  .prose-legal h2 { @apply mt-10 mb-3 text-[1.2rem] font-semibold text-navy; }
+  .prose-legal p, .prose-legal li { @apply text-ink; }
+  .prose-legal p + p { @apply mt-3; }
+  .prose-legal ul { @apply mt-3 list-disc space-y-2 pl-6; }
+  .prose-legal a { @apply text-gold-dark underline; }
+}
+
+/* Reveal on scroll (content stays visible without JS) */
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  * { transition-duration: 0s !important; animation-duration: 0s !important; }
+}
